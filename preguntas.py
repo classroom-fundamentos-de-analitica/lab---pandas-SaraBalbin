@@ -197,8 +197,9 @@ def pregunta_11():
     cant = tbl1.groupby('_c0')['_c4'].apply(lambda x: ','.join(str(e) for e in sorted(x)))
     col0 = list(tbl1['_c0'].unique())
     col0.sort()
-    x = pd.DataFrame({"_c4": list(cant.array)}, index=pd.Series(col0, name="_c0"),)
+    x = pd.DataFrame({'_c0': col0, "_c4": list(cant.array)})
     return x
+
 
 def pregunta_12():
     """
@@ -215,12 +216,14 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    # tbl2['_c5b'] = tbl2['_c5b'].astype('object')
-    # tbl2['_c5'] = tbl2[['_c5a', '_c5b']].apply(':'.join, axis=1)
-    # return tbl2
-    return
 
-# print(pregunta_12())
+    tbl2['_c5b'] = tbl2['_c5b'].apply(lambda x: str(x))
+    tbl2['_c5'] = tbl2[['_c5a', '_c5b']].apply(':'.join, axis=1)
+    col0 = sorted(list(tbl2['_c0'].unique()))
+    col5 = tbl2.groupby('_c0')['_c5'].apply(lambda x: ','.join(e for e in sorted(x)))
+
+    respuesta = pd.DataFrame({'_c0': col0, "_c5": list(col5.array)})
+    return respuesta
 
 def pregunta_13():
     """
@@ -236,4 +239,6 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+    fusion = pd.merge(tbl0, tbl2, on='_c0')
+    cant = fusion.groupby('_c1')['_c5b'].sum()
+    return cant
