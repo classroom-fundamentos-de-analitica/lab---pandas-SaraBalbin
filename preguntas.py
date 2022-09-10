@@ -22,7 +22,8 @@ def pregunta_01():
     40
 
     """
-    return
+    filas = len(tbl0)
+    return filas
 
 
 def pregunta_02():
@@ -33,8 +34,8 @@ def pregunta_02():
     4
 
     """
-    return
-
+    columnas = tbl0.shape
+    return columnas[1]
 
 def pregunta_03():
     """
@@ -50,8 +51,10 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    cant = tbl0.groupby('_c1')['_c1'].count()
+    return cant
 
+# print(pregunta_03())
 
 def pregunta_04():
     """
