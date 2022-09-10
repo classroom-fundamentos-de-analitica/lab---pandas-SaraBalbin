@@ -153,8 +153,8 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
-
+    tbl0['year'] = tbl0['_c3'].map(lambda x: x.split('-')[0])
+    return tbl0
 
 def pregunta_10():
     """
@@ -170,8 +170,8 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
-
+    cant = tbl0.groupby('_c1')['_c2'].apply(lambda x: ':'.join(str(e) for e in sorted(x)))
+    return cant
 
 def pregunta_11():
     """
@@ -189,7 +189,8 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    return
+    cant = tbl1.groupby('_c0')['_c4'].apply(lambda x: ','.join(str(e) for e in sorted(x)))
+    return cant
 
 
 def pregunta_12():
@@ -207,8 +208,12 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
+    # tbl2['_c5b'] = tbl2['_c5b'].astype('object')
+    # tbl2['_c5'] = tbl2[['_c5a', '_c5b']].apply(':'.join, axis=1)
+    # return tbl2
     return
 
+# print(pregunta_12())
 
 def pregunta_13():
     """
