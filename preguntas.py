@@ -54,8 +54,6 @@ def pregunta_03():
     cant = tbl0.groupby('_c1')['_c1'].count()
     return cant
 
-# print(pregunta_03())
-
 def pregunta_04():
     """
     Calcule el promedio de _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
@@ -68,7 +66,8 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    cant = tbl0.groupby('_c1')['_c2'].mean()
+    return cant
 
 
 def pregunta_05():
@@ -85,8 +84,9 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
-
+    cant = tbl0.groupby('_c1')['_c2'].max()
+    return cant
+    
 
 def pregunta_06():
     """
@@ -97,7 +97,10 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
+    unicos = tbl1['_c4'].unique()
+    unicos = list(unicos)
+    unicos.sort()
+    return [letra.upper() for letra in unicos]
 
 
 def pregunta_07():
@@ -113,7 +116,8 @@ def pregunta_07():
     E    67
     Name: _c2, dtype: int64
     """
-    return
+    cant = tbl0.groupby('_c1')['_c2'].sum()
+    return cant
 
 
 def pregunta_08():
@@ -131,8 +135,8 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
-
+    tbl0['suma'] = tbl0['_c0'] + tbl0['_c2']
+    return tbl0
 
 def pregunta_09():
     """
